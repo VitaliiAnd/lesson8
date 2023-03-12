@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>
+            <a href="../index.html"> Назад</a>
+        </h3>
+        <h3>
+            Дано послідовність оцінок учня. Підрахувати кількість:
+            <ol>
+                <li>двійок</li>
+                <li>кількість хороших оцінок (добре, відмінно)</li>
+                <li>кількість оцінок, які нижче середнього</li>
+            </ol>
+        </h3>
+        <script>
+        function getStudentScore(quantityScoreStudent) {
+            let score = []
+            for (let a = 0; a < quantityScoreStudent; a++){
+                let randomScore = 1 + Math.floor(Math.random() * 5)
+                score.push(randomScore)
+            }
+            return score
+        }
+        function getStudentScoreTwo(studentScore) {
+            let scoreTwo = 0
+            for (let a = 0; a < studentScore.length; a++){
+                if (studentScore[a] < 3) scoreTwo++
+            }
+            return scoreTwo
+        }
+        function getGoodScoreStudent(studentScore) {
+            let counterGoodScore = 0
+            for (let a = 0; a < studentScore.length; a++){
+                if (studentScore[1] > 3) counterGoodScore++
+            }
+            return counterGoodScore
+        }
+        function getAverageScoreStudent(studentScore) {
+            let sumScore = 0
+            for (let a = 0; a < studentScore; a++){
+                sumScore += studentScore[a]
+            }
+            console.log(`Сума оцінок: ${sumScore}`)
+            let averageScore = sumScore / studentScore.length
+            console.log(`Середня оцінка: ${averageScore}`)
+            return averageScore
+        }
+        function getScoreBelowTheAverage(averageScoreStudent, studentScore) {
+            let scoreBelowTheAverage = 0
+            for (let a = 0; a < studentScore.length; a++){
+                if (studentScore[a] < averageScoreStudent) scoreBelowTheAverage++
+            }
+            return scoreBelowTheAverage
+        }
+        const inputQuantityScoreStudent = parseInt(prompt('Введіть значення'))
+
+        let studentScore = getStudentScore(inputQuantityScoreStudent)
+        document.write(`Оцінка учня-${studentScore}<br>`)
+        let studentScoreTwo = getStudentScoreTwo(studentScore)
+        document.write(`Кількість двійок- ${studentScoreTwo}<br>`)
+        let goodScoreStudent = getGoodScoreStudent(studentScore)
+        document.write(`Кількість оцінок хорошист- ${goodScoreStudent}<br>`)
+        let averageScoreStudent = getAverageScoreStudent(studentScore)
+        let scoreBelowTheAverage = getScoreBelowTheAverage(averageScoreStudent, studentScore)
+        document.write(`Кількість оцінок нижче середнього- ${scoreBelowTheAverage}`)
+    </script>
+    </body>
+</html>

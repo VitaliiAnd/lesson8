@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <a href="../index.html"> Назад</a>
+    </h3>
+    <h3>
+        Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+        <ul>
+            <li>починаються на букву «А»;</li>
+            <li>перша і остання літери співпадають;</li>
+            <li>складаються з більше ніш 5 символів;</li>
+        </ul>
+    </h3>
+    <script>
+        function inputArray (inputNumber) {
+            let arr = []
+            for (let a = 0; a < inputNumber; a++){
+                const carRegisterNumber = prompt(`Введіть номер авто ${a + 1}`)
+                arr.push(carRegisterNumber)
+            }
+            return arr
+        }
+        function getNumberFirstLetter(letter, carArray) {
+            let firstLetterCounter = 0
+            for (let a = 0; a < carArray.length; a++){
+                if (carArray[a][0].toUpperCase() === 'A') firstLetterCounter++
+            }
+            return firstLetterCounter
+        }
+        function getSammeLetters (carArray) {
+            let sameLettersCounter = 0
+            for (let a = 0; a < carArray.length; a++){
+                if (carArray[a][0].toUpperCase() === carArray[a][carArray[a].length-1].toUpperCase()) sameLettersCounter++
+            }
+            return sameLettersCounter
+        }
+        function getCarNumberLength(lengthToCompare, carArray) {
+            let comparedLengthCounter = 0
+            for (let a = 0; a < carArray.length; a++){
+                if (carArray[a].length > lengthToCompare)
+                comparedLengthCounter++
+            }
+            return comparedLengthCounter
+        }
+        const numberOfCars = parseInt(prompt('Введіть кількість авто'))
+        const carRegisterNumberList = inputArray(numberOfCars)
+        const carsFirstLetterA = getNumberFirstLetter('A', carRegisterNumberList)
+        const firstLastSameLetters = getSammeLetters(carRegisterNumberList)
+        const carNumberMoreThanFiveLetters = getCarNumberLength(5, carRegisterNumberList)
+        document.write(`
+            Машин з першою літерою А-${carsFirstLetterA}<br>
+            Машин з співпадаючими першою і останньою-${firstLastSameLetters}<br>
+            Номерів з більше ніж 5 символів-${carNumberMoreThanFiveLetters}
+        `)
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <a href="../index.html"> Назад</a>
+    </h3>
+        <h3>
+            Морський бій. Користувач вводить кількість клітинок
+            одновимірного масиву та кількість одиночних кораблів.
+            Комп’ютер довільно розміщує ці одиночні кораблі у масиві
+            по один у клітинці (якщо у клітинці 0, то клітинка пуста,
+            якщо 1 – то це означає, що там є корабель. Користувач вводить
+            номер клітинки,
+            куди стріляє. Гра продовжується до тих пір, поки не будуть
+            потоплені усі кораблі.
+        </h3>
+
+    <script>
+        const inputBattleField = parseInt(prompt('Скільки клітинок буде на полі'))
+        const shipQuantity = parseInt(prompt('Скільки кораблів'))
+        function getBattleField(inputBattleField) {
+            let arr = []
+            for (let a = 0; a < inputBattleField; a++){
+                arr.push(0)
+            }
+            console.log(arr)
+            return arr
+        }
+        function getShip(shipQuantity) {
+            let arr = []
+            for (let a = 0; a < shipQuantity; a++){
+                arr.push(1)
+            }
+            console.log(arr)
+            return arr
+        }
+        function getRandomNum(minNum, maxNum) {
+            let randomNumber = minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+            return randomNumber
+        }
+        function getRandomPositionShip(battleField, ship) {
+            let randomNumIndex
+            for (let b = 0; b < ship.length; b++){
+                randomNumIndex = getRandomNum(0, battleField.length - 1)
+                while (battleField[randomNumIndex]){
+                    console.log(Boolean(battleField[randomNumIndex]))
+                    randomNumIndex = getRandomNum(0, battleField.length - 1)
+                }
+                console.log(Boolean(battleField[randomNumIndex]))
+                console.log(randomNumIndex)
+                battleField[randomNumIndex] = 1
+            }
+            console.log(battleField)
+            return battleField
+        }
+        function getShot(randomPositionShip, shipQuantity) {
+            let counter = 0
+            while(counter != shipQuantity){
+                const shot = parseInt(prompt(`Куди будемо стріляти від 1 до ${inputBattleField}`))
+                if (randomPositionShip[shot - 1] === 1){
+                    alert('Потопили')
+                    counter++
+                } else alert('Не влучив')
+            } 
+            alert('Ви виграли ')
+        }
+        
+        const battleField = getBattleField(inputBattleField)
+        const ship = getShip(shipQuantity)
+        const randomPositionShip = getRandomPositionShip(battleField, ship)
+        const shot = getShot(randomPositionShip, shipQuantity)
+
+    </script>
+</body>
+</html>

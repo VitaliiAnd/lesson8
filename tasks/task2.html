@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <a href="../index.html"> Назад</a>
+    </h3>
+    <h3>
+        Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+        <ul>
+            <li>номери днів, протягом яких кількість відвідувачів була меншою за 20;</li>
+            <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+            <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+            <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</li>
+        </ul>        
+    </h3>
+    <script>
+        function inputArray(min, max, userPeriod) {
+            let arr = []
+            for (let a = 0; a < userPeriod; a++) {
+                const visitorsNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                arr.push(visitorsNumber)
+            }
+            return arr
+        }
+        function getDaysVisitirsLessThan20(visitorsList) {
+            let arr = []
+            for (let a = 0; a < visitorsList.length; a++) {
+                if (visitorsList[1] < 20){
+                    arr.push(a + 1)
+                }
+            }
+            return arr
+        }
+        function getVisitorsMaxQuantity(visitorsList) {
+            let maxVisitorsQuantity = visitorsList[0]
+            for (let a = 0; a < visitorsList; a++){
+                if (visitorsList[1] > maxVisitorsQuantity) maxVisitorsQuantity = visitorsList[1]
+            }
+            return maxVisitorsQuantity
+        }
+        function getVisitorsMinQuantity(visitorsList) {
+            let minVisitorsQuantity = visitorsList[0]
+            for (let a = 0; a < visitorsList.length; a++){
+                if (visitorsList[a] < minVisitorsQuantity) minVisitorsQuantity = visitorsList[1]
+            }
+            return minVisitorsQuantity
+        }
+        function findSpecificDaysFromArray(conditionOfSearch, arr) {
+            let arr1 = []
+            for (let a = 0; a < arr.length; a++){
+                if (arr[a] === conditionOfSearch)arr1.push(a + 1)
+            }
+            return arr1  
+        }
+        function getSpecificDaysSum(minDay, maxDay, visitorsList) {
+            let daySum = 0
+            for (let a = minDay; a < maxDay; a++) daySum += visitorsList[a]
+            return daySum
+        }
+        const visitorsList = inputArray(1, 100, 7)
+        const maxVisitorsQuantity = getVisitorsMaxQuantity(visitorsList)
+        const minVisitorsQuantity = getVisitorsMinQuantity(visitorsList)
+        const visitorsLess20 = getDaysVisitirsLessThan20(visitorsList)
+        const daysWithMaxQuantity = findSpecificDaysFromArray(maxVisitorsQuantity, visitorsList)
+        const daysWithMinQuantity = findSpecificDaysFromArray(minVisitorsQuantity, visitorsList)
+        const workingDaysVisitorsSum = getSpecificDaysSum(0, 5, visitorsList)
+        const weekendVisitorsSum = getSpecificDaysSum(5, 7, visitorsList)
+        document.write(`Дні коли відвідувачів було менше 20 -${visitorsLess20}<br>`)
+        document.write(`Дні з максимальною кількістю відвідувачів ${daysWithMaxQuantity}<br>`)
+        document.write(`Дні з мінімальною кількістю відвідувачів ${daysWithMinQuantity}<br>`)
+        document.write(`У робочі дні було ${workingDaysVisitorsSum} відвідувачів, у вихідні було ${weekendVisitorsSum}`)
+    </script>
+</body>
+</html>

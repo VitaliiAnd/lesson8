@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <a href="../index.html"> Назад</a>
+    </h3>
+    <h3>
+        Дано одновимірний масив, у якому зберігається певна виграшна сума 
+        (елементи заповнюються випадковим чином значеннями від -500 до 500).
+        Надаючи користувачу можливість вибирати номери елементів  (поки він не відмовиться).
+        Знаходити сумарний виграш.
+    </h3>
+    <script>
+        function inputArray(min, max, inputNumber) {
+            let arr = []
+            for (let a = 0; a < inputNumber; a++){
+                const arrItem = Math.floor(Math.random() * (max - min + 1)) + min
+                arr.push(arrItem)
+            }
+            return arr
+        }
+        function getUserWinSum(sumArray) {
+            let userWinSum = 0
+            let userConfirm
+            do {
+                const userTry = parseInt(prompt(`Введіть номер від 1 до ${sumArray.length}`))
+                userWinSum += sumArray[userTry - 1]
+                userConfirm = confirm(`Сума твого виграшу ${sumArray[userTry]}, загальна сума ${userWinSum}, продовжуємо гру?`)
+            }
+            while (userConfirm === true)
+            return userWinSum
+        }
+        let randomWinSum = inputArray(-500, 500, 100)
+        let userWinSum = getUserWinSum(randomWinSum)
+        document.write(`Виграш ${userWinSum}`)
+    </script>
+</body>
+</html>
